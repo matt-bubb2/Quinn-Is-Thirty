@@ -1,22 +1,29 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { LockFill } from "react-bootstrap-icons";
-import CountdownTimer from "../CountdownTimer/CountdownTimer";
-import "./Login.css";
+import "./Authenticate.css";
 import { useState } from "react";
-function Login() {
-  const targetDate = new Date("December 19, 2024 00:00:00");
+import { useNavigate } from "react-router-dom";
+
+import Cookies from "js-cookie";
+
+function Authenticate() {
   const [inputValue, setInputValue] = useState("");
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    localStorage.setItem("userName", inputValue);
+    if (inputValue === "quinn3-0") {
+      Cookies.set("authed", "true");
+      navigate("/home");
+    } else {
+      Cookies.set("authed", "false");
+    }
   };
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
   return (
     <div className="login">
-      <CountdownTimer milliseconds={targetDate} />
       <LockFill id="lock" />
       <Form id="form-label">
         <Form.Group className="mb-3" controlId="formBasicName">
@@ -25,14 +32,13 @@ function Login() {
             type="name"
             value={inputValue}
             onChange={handleInputChange}
-            placeholder="Enter Name"
+            placeholder="Enter Password"
           />
           <Form.Text className="text-muted"></Form.Text>
         </Form.Group>
         <Button
           variant="outline-danger"
           type="submit"
-          href="/auth"
           onClick={handleButtonClick}
         >
           Submit
@@ -42,4 +48,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Authenticate;

@@ -10,7 +10,9 @@ function Home() {
   return (
     <Navbar expand="lg" data-bs-theme="dark" className="bg-body-tertiary">
       <Container id="home-container">
-        <Navbar.Brand href="/">Welcome to Quinn's 30th!</Navbar.Brand>
+        <Navbar.Brand href="/">
+          Welcome to Quinn's 30th, {localStorage.getItem("userName")}!
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

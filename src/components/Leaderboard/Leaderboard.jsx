@@ -1,6 +1,19 @@
 import Table from "react-bootstrap/Table";
 import "./Leaderboard.css";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
+
 function Leaderboard() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const cookie = Cookies.get("authed");
+    console.log(cookie);
+    if (cookie === "false") {
+      navigate("/auth");
+    }
+  }, []);
   return (
     <div className="leaderboard-div">
       <Table data-bs-theme="dark" bordered>
