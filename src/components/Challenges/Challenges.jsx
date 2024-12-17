@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 function Accordian() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const [textDance, setTextDance] = useState(true);
@@ -28,6 +30,31 @@ function Accordian() {
       challengeName: name,
       score: score,
     });
+  };
+  const submitChallenge = async () => {
+    setIsSubmitting(true);
+    const rawResponse = await fetch(
+      import.meta.env.VITE_REACT_API + "/users/challenge",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Referer: "quinn-is-thirty.com",
+          "auth-token": import.meta.env.VITE_REACT_TOKEN,
+        },
+        mode: "cors",
+        body: JSON.stringify({
+          name: window.localStorage.getItem("userName"),
+          challengeId: challengeDetails.challengeId,
+          challengeName: challengeDetails.challengeName,
+          score: challengeDetails.score,
+        }),
+      }
+    );
+    const content = await rawResponse.json();
+    console.log(content);
+    setIsSubmitting(false);
+    handleClose();
   };
 
   return (
@@ -57,7 +84,15 @@ function Accordian() {
                   <td>10</td>
                 </tr>
                 <tr>
-                  <td>Submit Your Favorite Picture with Quinn</td>
+                  <td
+                    className="fit-content"
+                    onClick={() => {
+                      handleModalShow("02", "Submit-Picutre", "10");
+                      handleAnimation();
+                    }}
+                  >
+                    Submit Your Favorite Picture with Quinn
+                  </td>
                   <td>10</td>
                 </tr>
                 <tr>
@@ -219,7 +254,7 @@ function Accordian() {
           <Modal.Title>Challenge Actions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          " {challengeDetails.challengeName}" earns you{" "}
+          "{challengeDetails.challengeName}" earns you{" "}
           {textDance ? (
             <p className="dancing-text"> {challengeDetails.score} </p>
           ) : (
@@ -231,8 +266,23 @@ function Accordian() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose} disabled>
-            Submit Challenge (Not yet!)
+          <Button
+            variant="primary"
+            onClick={submitChallenge}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                &nbsp;Submitting...
+              </>
+            ) : (
+              "Submit"
+            )}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -21,9 +21,10 @@ function Home() {
   const NAME = "API NAME";
   return (
     <div className="ps">
-      <div className="p font-color">
-        For Quinn's 30th birthday we are doing 30 things for Quinn's 30th. Each
-        person can earn points by completing some or all of the 30 challenges.
+      <div className="p first-p font-color">
+        For Quinn's <b class="p rainbow rainbow_text_animated">(Suprise)</b>30th
+        birthday we are doing 30 things for Quinn's 30th. Each person can earn
+        points by completing some or all of the 30 challenges.
       </div>
       <div className="p font-color">
         Challenges start on Quinn's birthday 12/19. Some challenges are in
@@ -34,6 +35,11 @@ function Home() {
         You can navigate to the challenges tab to view and complete challenges.
         The leaderboard will track our leaders and our photo gallery will be a
         celebration of Quinn!
+      </div>
+      <div className="p font-color">
+        <b className="important">IMPORTANT </b> Throughtout the weekend, if you
+        leave the site, come back, and the site asks for your name again, please
+        use the same name everytime it prompts you for your name,
       </div>
       <div className="p bottom-p font-color">
         Tune in 12/19 to start challenges! &emsp;&emsp;&emsp;&emsp;&emsp;
