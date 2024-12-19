@@ -8,6 +8,7 @@ import Challenges from "./components/Challenges/Challenges";
 import Authenticate from "./components/Authenticate/Authenticate";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
+import ImageUpload from "./components/ImageUpload/ImageUpload";
 
 function App() {
   let cookie;
@@ -28,6 +29,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/challenges" element={<Challenges />} />
+        <Route path="/pics" element={<ImageUpload />} />
       </Routes>
     </Router>
   );

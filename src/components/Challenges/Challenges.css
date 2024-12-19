@@ -26,7 +26,16 @@
     display: inline-block;
     animation: dance 2s infinite
 }
+.con, .input-pics{
+    background-color: white !important;
+}
+.modal-body{
+    background-color: white !important;
+}
+.input-pics{
+    background-color: white !important;
 
+}
   @keyframes dance {
     0% {
       transform: translateX(0) rotate(0deg); 

@@ -1,0 +1,13 @@
+.pics-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#piclist{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+}

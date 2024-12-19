@@ -35,13 +35,14 @@ function Leaderboard() {
     setLeaderboardChallenges(content);
   };
 
-  return leaderboardChallenges.length > 1 ? (
+  return leaderboardChallenges.length >= 1 ? (
     <div className="leaderboard-div">
       <Table data-bs-theme="dark" bordered>
         <thead>
           <tr>
             <th>Name</th>
             <th>Challenges Complete</th>
+            <th>Total Points</th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +50,7 @@ function Leaderboard() {
             <tr key={index}>
               <td>{item.name}</td>
               <td>{item.challenges_completed}</td>
+              <td>{item.total_points}</td>
             </tr>
           ))}
         </tbody>
